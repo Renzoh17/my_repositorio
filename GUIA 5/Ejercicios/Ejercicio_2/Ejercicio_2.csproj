@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1C0F93E7-CD05-444E-9DE9-3B7BEF36AFE9}</ProjectGuid>
+    <ProjectGuid>{AB507E76-CDDB-4252-A076-C319CA72CA6F}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Ejercicio_3</RootNamespace>
-    <AssemblyName>Ejercicio_3</AssemblyName>
+    <RootNamespace>Ejercicio_2</RootNamespace>
+    <AssemblyName>Ejercicio_2</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

@@ -9,11 +9,13 @@ namespace EjercicioPinamar
     internal class Program
     {
         static double recaudacion = 0;
-        static double cantidadaccesos;
+        static int cantidadaccesos;
+        static string[] idautomor = new string[100];
+        static int contid = 0;
         static void MostrarMenu()
         {
             Console.Clear();
-            Console.WriteLine("\tMenu\n1-Registrar acceso\n2-Mostrar Recaudación\n3-Mostrar Cantidad de accesos");
+            Console.WriteLine("\tMenu\n1-Registrar acceso\n2-Mostrar Recaudación\n3-Mostrar Cantidad de accesos\n4-Mostrar Identificadores de Automotores\n(-1)-Salir");
         }
         static void MostrarMenuTicket()
         {
@@ -32,6 +34,9 @@ namespace EjercicioPinamar
                     break;
                 case 3:
                     MostrarInformeCaja();
+                    break;
+                case 4:
+                    MostrarIdentificadores();
                     break;
                 case -1:
                     return false;
@@ -68,6 +73,38 @@ namespace EjercicioPinamar
             Console.WriteLine("La cantidad de accesos es: {0}", cantidadaccesos);
             Console.ReadKey();
         }
+        static void MostrarIdentificadores()
+        {
+            OrdenarVectorID();
+            Console.Clear();
+            Console.WriteLine("\tIdentificadores de automotores ingresados");
+            if (contid != 0)
+                for (int i = 0; i < contid; i++)
+                {
+                    Console.WriteLine("{0}: {1}", i + 1, idautomor[i]);
+                }
+            else Console.WriteLine("No se ingreso ningun identificador");
+            Console.ReadKey();
+        }
+
+        static void OrdenarVectorID()
+        {
+           
+            for (int n = 0; n < (contid-1); n++)
+            {
+                for(int m = n+1; m < contid; m++)
+                {
+                    if (idautomor[n].CompareTo(idautomor[m])>0)
+                    {
+                        string aux = idautomor[n];
+                        idautomor[n] = idautomor[m];
+                        idautomor[m] = aux;
+
+                    }
+                }
+            }
+        }
+
         static void GenerarTicket()
         {
             bool continuar = true;
@@ -118,6 +155,7 @@ namespace EjercicioPinamar
                         Console.WriteLine("Opcion Incorrecta, ingrese nuevamente una opcion valida");
                         break;
                 }
+                if (op >= 2 && op <= 6) IngresoIdentificador();
                 if (op != -1)
                 {
                     Console.WriteLine("Desea ingresar otro vehiculo? (-1 para finalizar)");
@@ -154,12 +192,20 @@ namespace EjercicioPinamar
             recaudacion += montofinal;
             MostrarTicket(montofinal);
         }
+
+        static void IngresoIdentificador()
+        {
+            Console.Write("Ingrese el identificador del automotor: ");
+            idautomor[contid++] = Console.ReadLine();
+        }
+
         static void MostrarTicket(int montofinal)
         {
             Console.WriteLine("Monto Final de Ticket generado: {0}", montofinal);
             cantidadaccesos++;
             Console.ReadKey();
         }
+
         static void Main(string[] args)
         {
             bool continuar = true;
@@ -170,7 +216,7 @@ namespace EjercicioPinamar
             {
                 continuar = VerificarOpcion(o);
                 MostrarMenu();
-                o = Convert.ToInt32(Console.ReadLine());
+                if(o != -1) o = Convert.ToInt32(Console.ReadLine());
             }
             Console.ReadKey();
         }
